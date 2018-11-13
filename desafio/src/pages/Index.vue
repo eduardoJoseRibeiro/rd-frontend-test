@@ -10,6 +10,8 @@
 <script>
 import Card from 'components/Card'
 
+import API from '../mixins/API'
+
 export default {
   name: 'Index',
 
@@ -17,9 +19,12 @@ export default {
     'my-card': Card
   },
 
+  mixins: [
+    API
+  ],
+
   data () {
     return {
-      API_URL: 'https://randomuser.me/api/',
       users: {},
       quantity: 50
     }
