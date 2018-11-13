@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex flex-center">
+  <q-page class="flex flex-center" padding>
     <my-card :users="users"/>
   </q-page>
 </template>
@@ -37,6 +37,7 @@ export default {
         .get(URL)
         .then(users => {
           this.users = users.data.results
+          console.log(this.users)
         })
         .catch(error => console.error(error))
     }
