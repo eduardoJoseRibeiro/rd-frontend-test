@@ -1,33 +1,37 @@
 <template>
   <table class="table">
     <tbody>
-      <tr v-for="user in users" :key="user.id.value" class="table__content">
-        <router-link :to="{ name: 'user', params: { id: user.id.value }}">
-            <td @click="goUser(user.id.value)">
-              <img :src="user.picture.thumbnail" alt="" class="table__content--img">
-            </td>
-            <td class="table__content--main capitalize">
-              {{ user.name.first }}
-            </td>
-            <td class="table__content--normal lowercase">
-              {{ user.email }}
-            </td>
-            <td class="table__content--normal">
-              {{ user.cell }}
-            </td>
-            <td class="table__content--normal capitalize">
-              {{ user.location.city }} - <span class="uppercase"> {{ user.location.state }} </span>
-            </td>
-            <td class="table__content--normal">
-              <q-icon name="remove_circle"/>
-            </td>
-            <td class="table__content--normal">
-              <q-icon name="reply"/>
-            </td>
-            <td class="table__content--normal">
-              <q-icon name="save"/>
-            </td>
-        </router-link>
+      <!-- Por algum motivo, existe usuários que não possuem ID, devido a isso eu criei o v-if -->
+      <tr
+        v-for="user in users"
+        :key="user.id.value"
+        class="table__content"
+        @click="goUser(user.id.value)"
+        v-if="user.id.value">
+        <td>
+          <img :src="user.picture.thumbnail" alt="" class="table__content--img">
+        </td>
+        <td class="table__content--main capitalize">
+          {{ user.name.first }}
+        </td>
+        <td class="table__content--normal lowercase">
+          {{ user.email }}
+        </td>
+        <td class="table__content--normal">
+          {{ user.cell }}
+        </td>
+        <td class="table__content--normal capitalize">
+          {{ user.location.city }} - <span class="uppercase"> {{ user.location.state }} </span>
+        </td>
+        <td class="table__content--normal">
+          <q-icon name="remove_circle"/>
+        </td>
+        <td class="table__content--normal">
+          <q-icon name="reply"/>
+        </td>
+        <td class="table__content--normal">
+          <q-icon name="save"/>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -49,7 +53,7 @@ export default {
 
   methods: {
     goUser (id) {
-      this.$router.push({name: 'user', params: { userId: '12117533881' }})
+      this.$router.push({name: 'user', params: { id }})
     }
   }
 }
