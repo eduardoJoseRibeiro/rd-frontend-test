@@ -1,35 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <table>
-      <tbody>
-        <tr v-for="user in users" :key="user.id.value">
-          <td>
-            <img :src="user.picture.thumbnail" alt="">
-          </td>
-          <td>
-            {{ user.name.first }}
-          </td>
-          <td>
-            {{ user.email }}
-          </td>
-          <td>
-            {{ user.cell }}
-          </td>
-          <td>
-            {{ user.location.city }} - {{ user.location.state }}
-          </td>
-          <td>
-            <q-icon name="remove_circle"/>
-          </td>
-          <td>
-            <q-icon name="reply"/>
-          </td>
-          <td>
-            <q-icon name="save"/>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <my-card :users="users"/>
   </q-page>
 </template>
 
@@ -37,23 +8,30 @@
 </style>
 
 <script>
+import Card from 'components/Card'
+
 export default {
   name: 'Index',
+
+  components: {
+    'my-card': Card
+  },
 
   data () {
     return {
       API_URL: 'https://randomuser.me/api/',
-      users: {}
+      users: {},
+      quantity: 50
     }
   },
 
   created () {
-    this.getUsers()
+    this.getUsers(this.quantity)
   },
 
   methods: {
-    getUsers () {
-      const URL = `${this.API_URL}?results=100`
+    getUsers (quantity) {
+      const URL = `${this.API_URL}?results=${quantity}`
 
       this.$axios
         .get(URL)
