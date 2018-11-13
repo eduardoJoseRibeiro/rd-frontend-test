@@ -1,7 +1,7 @@
 <template>
   <table class="table">
     <tbody>
-      <tr v-for="user in users" :key="user.id.value" class="table__row">
+      <tr v-for="user in users" :key="user.id.value" class="table__content">
         <td>
           <img :src="user.picture.thumbnail" alt="" class="table__content--img">
         </td>
@@ -49,6 +49,21 @@ export default {
 
 <style lang="stylus">
 @import '~variables'
+
+$backHover = #f9f9f9;
+
+.table {
+  border-radius: 10px;
+  background-color: white;
+}
+
+.table__content {
+  cursor: pointer;
+  &:hover {
+    background-color: $backHover;
+    border-color: $backHover;
+  }
+}
 
 .table__content--img {
   border-radius: 50%;
