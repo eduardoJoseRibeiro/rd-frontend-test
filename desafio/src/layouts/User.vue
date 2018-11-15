@@ -2,7 +2,7 @@
   <q-layout> <!-- Be sure to play with the Layout demo on docs -->
 
     <!-- (Optional) The Header -->
-    <q-layout-header>
+    <q-layout-header style="box-shadow: none">
       <q-toolbar>
         <q-btn
           round

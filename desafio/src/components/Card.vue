@@ -90,4 +90,9 @@ $backHover = #f9f9f9;
 .table__content--normal {
   color: $quaternary;
 }
+
+.table__line {
+  background-color: $primary;
+  min-height: 3px;
+}
 </style>
