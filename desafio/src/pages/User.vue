@@ -8,10 +8,10 @@
         </div>
       </div>
       <div class="background__info--middle">
-        <p>
+        <p class="text-weight-regular">
           {{ message }}
         </p>
-        <h3 class="capitalize">
+        <h3 class="capitalize text-weight-medium">
           {{ user.name.first }} {{ user.name.last }}
         </h3>
       </div>
@@ -85,6 +85,7 @@ $contentColor = #4e4e4e;
   right: 25vw;
   top: 5vh;
   background-color: white;
+  box-shadow: 0px 0px 10px 0px rgba(171,171,171,1);
   border-radius: $borderRadius 0 $borderRadius $borderRadius;
   @media screen and (max-width: 400px){
     width: 90vw;
@@ -115,7 +116,7 @@ $contentColor = #4e4e4e;
 }
 
 .background__info--middle {
-  margin-top: 13vh;
+  margin-top: 15vh;
   p,
   h3 {
     text-align: center;

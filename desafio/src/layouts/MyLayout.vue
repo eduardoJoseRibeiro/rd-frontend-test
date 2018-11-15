@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf" style="background-color: whitesmoke">
+  <q-layout view="hHh Lpr lFf" style="background-color: whitesmoke">
     <q-layout-header>
       <q-toolbar
         color="primary"
@@ -25,17 +25,16 @@
         link
         inset-delimiter
       >
-        <q-list-header>Essential Links</q-list-header>
         <q-item to="/">
-          <q-item-side icon="school" />
+          <q-item-side icon="select_all"/>
           <q-item-main label="Todos"/>
         </q-item>
         <q-item to="/">
-          <q-item-side icon="code" />
+          <q-item-side icon="done_all" />
           <q-item-main label="Atendidos"/>
         </q-item>
         <q-item to="/">
-          <q-item-side icon="chat"/>
+          <q-item-side icon="delete_sweep"/>
           <q-item-main label="Lixeira"/>
         </q-item>
       </q-list>
