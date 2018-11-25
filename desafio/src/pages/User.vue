@@ -4,7 +4,7 @@
     <div class="background__info">
       <div class="background__info--top">
         <div class="user__image--support">
-          <img :src="user.picture.large" alt="" class="user__image">
+          <img :src="user.picture ? user.picture.large : ''" alt="" class="user__image">
         </div>
       </div>
       <div class="background__info--middle">
@@ -12,12 +12,32 @@
           {{ message }}
         </p>
         <h3 class="capitalize text-weight-medium">
-          {{ user.name.first }} {{ user.name.last }}
+          {{ user.name ? user.name.first : '' }} {{ user.name ? user.name.last : '' }}
         </h3>
       </div>
-      <p>
+      <div class="icons">
+        <div @mouseover="selectInfo(INFO_NAME)">
+          <q-icon name="person_outline" :class="isActive(INFO_NAME)"/>
+        </div>
+        <div @mouseover="selectInfo(INFO_EMAIL)">
+          <q-icon name="email" :class="isActive(INFO_EMAIL)"/>
+        </div>
+        <div @mouseover="selectInfo(INFO_BIRTHDAY)" >
+          <q-icon name="calendar_today" :class="isActive(INFO_BIRTHDAY)"/>
+        </div>
+        <div @mouseover="selectInfo(INFO_ADDRESS)">
+          <q-icon name="location_on" :class="isActive(INFO_ADDRESS)"/>
+        </div>
+        <div @mouseover="selectInfo(INFO_TEL)">
+          <q-icon name="phone" :class="isActive(INFO_TEL)"/>
+        </div>
+        <div @mouseover="selectInfo(INFO_PASS)">
+          <q-icon name="vpn_key" :class="isActive(INFO_PASS)"/>
+        </div>
+      </div>
+      <!-- <p>
         {{ user }}
-      </p>
+      </p> -->
     </div>
   </q-page>
 </template>
@@ -36,7 +56,14 @@ export default {
     return {
       id: this.$route.params.id,
       user: {},
-      message: 'Hi, My name is'
+      message: 'Hi, My name is',
+      INFO_NAME: 'name',
+      INFO_EMAIL: 'email',
+      INFO_BIRTHDAY: 'birthday',
+      INFO_ADDRESS: 'address',
+      INFO_TEL: 'tel',
+      INFO_PASS: 'pass',
+      activeIcon: 'name'
     }
   },
 
@@ -55,6 +82,23 @@ export default {
         .catch(error => {
           console.error(error)
         })
+    },
+
+    selectInfo (info) {
+      this.isEqualInfo(info, this.INFO_NAME)
+      this.isEqualInfo(info, this.INFO_EMAIL)
+      this.isEqualInfo(info, this.INFO_BIRTHDAY)
+      this.isEqualInfo(info, this.INFO_ADDRESS)
+      this.isEqualInfo(info, this.INFO_TEL)
+      this.isEqualInfo(info, this.INFO_PASS)
+    },
+
+    isEqualInfo (info, infoElement) {
+      if (info === infoElement) this.activeIcon = infoElement
+    },
+
+    isActive (info) {
+      return info === this.activeIcon ? {active: true} : ''
     }
   }
 }
@@ -101,7 +145,8 @@ $contentColor = #4e4e4e;
   padding-top: 5vh;
 }
 
-.user__image--support {
+.user__image--support,
+.icons {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,5 +174,19 @@ $contentColor = #4e4e4e;
     margin-top: 0;
     color: $contentColor;
   }
+}
+
+.icons {
+  margin-bottom: 5rem;
+}
+
+.icons .material-icons {
+  font-size: 3rem;
+  margin-right: 1.5rem;
+  color: #cfcfcf;
+}
+
+.icons .active {
+  color: #b3c02b;
 }
 </style>

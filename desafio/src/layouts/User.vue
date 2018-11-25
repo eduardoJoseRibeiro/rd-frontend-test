@@ -1,5 +1,5 @@
 <template>
-  <q-layout> <!-- Be sure to play with the Layout demo on docs -->
+  <q-layout view="hHh lpr lFf"> <!-- Be sure to play with the Layout demo on docs -->
 
     <!-- (Optional) The Header -->
     <q-layout-header style="box-shadow: none">
@@ -15,24 +15,10 @@
           style="transform: rotate(180deg); padding-top: 5px; padding-left: 3px;"
         />
       </q-toolbar>
-      <q-tabs>
-        <q-route-tab
-          slot="title"
-          icon="map"
-          to="/your/route"
-          replace
-          label="One Tab"
-        />
-        <q-route-tab
-          slot="title"
-          icon="assignment"
-          to="/some/other/route"
-          replace
-          label="Other Tab"
-        />
-      </q-tabs>
     </q-layout-header>
-
+    <q-layout-drawer v-model="drawer" :width="200" :breakpoint="300">
+      <div v-for="n in 50" :key="n">Drawer</div>
+    </q-layout-drawer>
     <q-page-container>
       <!-- This is where pages get injected -->
       <router-view />
@@ -43,14 +29,12 @@
 
 <script>
 export default {
-  // name: 'LayoutName',
+  name: 'LayoutUsers',
   data () {
     return {
-      leftDrawer: true
+      leftDrawer: false,
+      drawer: false
     }
   }
 }
 </script>
-
-<style>
-</style>

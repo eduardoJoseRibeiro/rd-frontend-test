@@ -4,7 +4,8 @@
       <q-toolbar
         color="primary"
       >
-        <q-btn
+        <img src="assets/zup1.png" alt="Logo da empresa Zup" style="width: 75px; margin-top: 5px">
+        <!-- <q-btn
           flat
           dense
           round
@@ -12,7 +13,7 @@
           aria-label="Menu"
         >
           <q-icon name="menu" />
-        </q-btn>
+        </q-btn> -->
       </q-toolbar>
     </q-layout-header>
 
