@@ -3,17 +3,33 @@
     <q-layout-header>
       <q-toolbar
         color="primary"
+        class="row"
       >
-        <img src="assets/zup1.png" alt="Logo da empresa Zup" style="width: 75px; margin-top: 5px">
-        <!-- <q-btn
-          flat
-          dense
-          round
-          @click="leftDrawerOpen = !leftDrawerOpen"
-          aria-label="Menu"
-        >
-          <q-icon name="menu" />
-        </q-btn> -->
+
+        <img
+          src="assets/zup1.png"
+          alt="Logo da empresa Zup"
+          style="width: 75px; margin-top: 5px"
+          class="col-1">
+
+        <div class="col-2"></div>
+
+        <div class="col-7">
+          <q-search
+            v-model="search_term"
+            class="search"
+            clearable
+            placeholder="Buscar"/>
+        </div>
+
+        <div class="col-2"></div>
+
+        <div class="col-1">
+          <q-icon
+            name="account_circle"
+            style="font-size: 2.4rem;"/>
+        </div>
+
       </q-toolbar>
     </q-layout-header>
 
@@ -48,15 +64,22 @@
 </template>
 
 <script>
-import { openURL } from 'quasar'
+import { openURL, QSearch } from 'quasar'
 
 export default {
   name: 'MyLayout',
+
+  components: {
+    QSearch
+  },
+
   data () {
     return {
-      leftDrawerOpen: this.$q.platform.is.desktop
+      leftDrawerOpen: this.$q.platform.is.desktop,
+      search_term: ''
     }
   },
+
   methods: {
     openURL
   }
@@ -89,5 +112,25 @@ export default {
 
 .q-layout-page-container {
   padding-left: 230px!important;
+}
+
+.search {
+  background-color: white!important;
+  border-radius: 20px;
+  padding: 5px;
+  color: $primary;
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .q-icon,
+  .q-icon:focus {
+    color: $secondary;
+    font-weight: bold;
+  }
+}
+
+.q-if:before {
+  border-bottom: none;
 }
 </style>
