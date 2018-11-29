@@ -71,7 +71,11 @@ export default {
   created () {
     this.getUser(this.id)
       .then(() => {
-        this.info = this.hasInfo(this.user.name, 'first') + ' ' + this.hasInfo(this.user.name, 'last')
+        const info = 'Hi, My name is'
+        const message = this.hasInfo(this.user.name, 'first') + ' ' + this.hasInfo(this.user.name, 'last')
+        const icon = this.INFO_NAME
+
+        this.changeMessageAndInfo(message, info, icon)
       })
       .catch(error => {
         console.error(error)
@@ -112,13 +116,8 @@ export default {
 
     isEqualInfo (info, infoElement) {
       if (info === infoElement) {
-        this.activeIcon = infoElement
-        const DADOS = this.compareMessageAndInfo(this.user, infoElement)
-
-        console.log(DADOS)
-        this.info = DADOS[0].info
-        this.message = DADOS[0].message
-        this.activeIcon = DADOS[0].name
+        const DADOS = this.compareMessageAndInfo(this.user, infoElement)[0]
+        this.changeMessageAndInfo(DADOS.message, DADOS.info, DADOS.name)
       }
     },
 
@@ -177,12 +176,19 @@ export default {
       ]
 
       return itemsActive.filter(item => item.name === NAME_INFO)
-      // console.log(itemsActive)
     },
 
-    changeMessageAndInfo (message, info) {
+    /**
+     * @name changeMessageAndInfo
+     * @param message
+     * @param info
+     * @param icon
+     * @returns {void}
+     */
+    changeMessageAndInfo (message, info, icon = false) {
       this.message = message
       this.info = info
+      if (icon) this.activeIcon = icon
     }
   }
 }
