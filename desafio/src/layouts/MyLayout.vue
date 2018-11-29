@@ -66,6 +66,13 @@ export default {
 <style lang="stylus">
 @import "~variables";
 
+.q-link.q-item.q-item-link,
+.q-link.q-item.q-item-link .q-icon {
+  font-weight: 300;
+  font-size: 1.3rem;
+  color: #6f6f6f;
+}
+
 .router-link-exact-active.router-link-active.q-link,
 .router-link-exact-active.router-link-active.q-link .q-icon {
   background: transparent;
@@ -73,7 +80,7 @@ export default {
 }
 
 .router-link-exact-active.router-link-active.q-link {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .q-layout-drawer {

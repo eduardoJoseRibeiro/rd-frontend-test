@@ -8,10 +8,10 @@
         </div>
       </div>
       <div class="background__info--middle">
-        <p class="text-weight-regular">
+        <p class="text-weight-regular" style="font-size: 1.2rem">
           {{ info }}
         </p>
-        <h3 :class="isCapitilize([INFO_NAME, INFO_ADDRESS])">
+        <h3 :class="isCapitilize([INFO_NAME, INFO_ADDRESS])" style="font-size: 2rem">
           {{ message }}
         </h3>
       </div>
