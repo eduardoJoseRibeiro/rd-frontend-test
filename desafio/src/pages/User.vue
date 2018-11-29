@@ -4,15 +4,15 @@
     <div class="background__info">
       <div class="background__info--top">
         <div class="user__image--support">
-          <img :src="user.picture ? user.picture.large : ''" alt="" class="user__image">
+          <img :src="hasInfo(user.picture, 'large')" alt="" class="user__image">
         </div>
       </div>
       <div class="background__info--middle">
         <p class="text-weight-regular">
-          {{ message }}
+          {{ info }}
         </p>
         <h3 class="capitalize text-weight-medium">
-          {{ user.name ? user.name.first : '' }} {{ user.name ? user.name.last : '' }}
+          {{ message }}
         </h3>
       </div>
       <div class="icons">
@@ -35,9 +35,9 @@
           <q-icon name="vpn_key" :class="isActive(INFO_PASS)"/>
         </div>
       </div>
-      <!-- <p>
+      <p>
         {{ user }}
-      </p> -->
+      </p>
     </div>
   </q-page>
 </template>
@@ -57,6 +57,7 @@ export default {
       id: this.$route.params.id,
       user: {},
       message: 'Hi, My name is',
+      info: '',
       INFO_NAME: 'name',
       INFO_EMAIL: 'email',
       INFO_BIRTHDAY: 'birthday',
@@ -69,36 +70,119 @@ export default {
 
   created () {
     this.getUser(this.id)
+      .then(() => {
+        this.info = this.hasInfo(this.user.name, 'first') + ' ' + this.hasInfo(this.user.name, 'last')
+      })
+      .catch(error => {
+        console.error(error)
+      })
   },
 
   methods: {
     getUser (id) {
       const URL = `${this.API_URL}?id=${id}`
-      this.$axios
-        .get(URL)
-        .then(user => {
-          this.user = user.data.results[0]
-        })
-        .catch(error => {
-          console.error(error)
-        })
+      return new Promise((resolve, reject) => {
+        this.$axios
+          .get(URL)
+          .then(user => {
+            this.user = user.data.results[0]
+            resolve()
+          })
+          .catch(error => {
+            reject(error)
+          })
+      })
     },
-
+    /**
+     * @name selectInfo
+     * @description Executado na hora que o usuário passa o mouse em cima do icone
+     */
     selectInfo (info) {
-      this.isEqualInfo(info, this.INFO_NAME)
-      this.isEqualInfo(info, this.INFO_EMAIL)
-      this.isEqualInfo(info, this.INFO_BIRTHDAY)
-      this.isEqualInfo(info, this.INFO_ADDRESS)
-      this.isEqualInfo(info, this.INFO_TEL)
-      this.isEqualInfo(info, this.INFO_PASS)
+      const INFOS_ELEMENTS = [
+        this.INFO_NAME,
+        this.INFO_EMAIL,
+        this.INFO_BIRTHDAY,
+        this.INFO_ADDRESS,
+        this.INFO_TEL,
+        this.INFO_PASS
+      ]
+
+      INFOS_ELEMENTS.forEach(INFO_ELEMENT => this.isEqualInfo(info, INFO_ELEMENT))
     },
 
     isEqualInfo (info, infoElement) {
-      if (info === infoElement) this.activeIcon = infoElement
+      if (info === infoElement) {
+        this.activeIcon = infoElement
+        const DADOS = this.compareMessageAndInfo(this.user, infoElement)
+
+        console.log(DADOS)
+        this.info = DADOS[0].info
+        this.message = DADOS[0].message
+        this.activeIcon = DADOS[0].name
+      }
     },
 
     isActive (info) {
       return info === this.activeIcon ? {active: true} : ''
+    },
+
+    isActiveInfo (info) {
+      return info === this.activeIcon
+    },
+
+    /**
+     * @name hasInfo
+     * @description
+     * @param info
+     * @param prop
+     * @returns {type of prop}
+     */
+    hasInfo (info, prop = false) {
+      if (prop) return info ? info[prop] : ''
+      else return info || ''
+    },
+
+    compareMessageAndInfo (USER, NAME_INFO) {
+      const itemsActive = [
+        {
+          name: this.INFO_NAME,
+          message: this.hasInfo(USER.name, 'first') + ' ' + this.hasInfo(USER.name, 'last'),
+          info: 'Hi, My name is'
+        },
+        {
+          name: this.INFO_EMAIL,
+          message: this.hasInfo(USER.email),
+          info: 'My email address is'
+        },
+        {
+          name: this.INFO_BIRTHDAY,
+          message: this.hasInfo(USER.dob, 'date'),
+          info: 'My birthday is'
+        },
+        {
+          name: this.INFO_ADDRESS,
+          message: this.hasInfo(USER.location, 'street'),
+          info: 'My address is'
+        },
+        {
+          name: this.INFO_TEL,
+          message: this.hasInfo(USER.phone),
+          info: 'My phone number is'
+        },
+        {
+          name: this.INFO_PASS,
+          message: this.hasInfo(USER.login, 'password'),
+          info: 'My password is'
+        }
+      ]
+
+      return itemsActive.filter(item => item.name === NAME_INFO)
+      // console.log(itemsActive)
+    },
+
+    changeMessageAndInfo (message, info) {
+      this.message = message
+      this.info = info
     }
   }
 }
