@@ -11,7 +11,7 @@
         <p class="text-weight-regular">
           {{ info }}
         </p>
-        <h3 class="capitalize text-weight-medium">
+        <h3 :class="isCapitilize([INFO_NAME, INFO_ADDRESS])">
           {{ message }}
         </h3>
       </div>
@@ -35,15 +35,13 @@
           <q-icon name="vpn_key" :class="isActive(INFO_PASS)"/>
         </div>
       </div>
-      <p>
-        {{ user }}
-      </p>
     </div>
   </q-page>
 </template>
 
 <script>
 import API from '../mixins/API'
+import moment from 'moment'
 
 export default {
   name: 'User',
@@ -125,6 +123,14 @@ export default {
       return info === this.activeIcon ? {active: true} : ''
     },
 
+    isCapitilize (infos) {
+      const CAPITALIZE = infos.some(info => info === this.activeIcon)
+
+      return CAPITALIZE
+        ? {capitalize: true, 'text-weight-medium': true}
+        : {'text-weight-medium': true}
+    },
+
     isActiveInfo (info) {
       return info === this.activeIcon
     },
@@ -155,7 +161,7 @@ export default {
         },
         {
           name: this.INFO_BIRTHDAY,
-          message: this.hasInfo(USER.dob, 'date'),
+          message: moment(this.hasInfo(USER.dob, 'date')).format('DD/MM/YYYY'),
           info: 'My birthday is'
         },
         {
@@ -180,6 +186,7 @@ export default {
 
     /**
      * @name changeMessageAndInfo
+     * @description Recebe a mensagem, info e icone, e atualizam as respectivas propriedades globais
      * @param message
      * @param info
      * @param icon
