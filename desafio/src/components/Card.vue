@@ -104,6 +104,9 @@ $backHover = #f9f9f9;
 .table__content--normal .q-icon {
   font-size: 1.3rem;
   margin-right: 1rem;
+  &:hover {
+    color: $secondary;
+  }
 }
 
 .table__line {
