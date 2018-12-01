@@ -76,6 +76,7 @@ $backHover = #f9f9f9;
   cursor: pointer;
   border-bottom: 2px solid #e0e0e0;
   padding: 10px;
+  padding-left: 20px;
   &:hover {
     background-color: $backHover;
   }
@@ -88,11 +89,14 @@ $backHover = #f9f9f9;
 
 .table__content--main {
   color: $primary;
-  font-weight: bold;
+  font-size: 1.3rem;
+  font-weight: 500;
+  padding-top: 8px;
 }
 
 .table__content--normal {
   color: $quaternary;
+  padding-top: 12px;
 }
 
 .table__line {
