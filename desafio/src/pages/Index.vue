@@ -12,7 +12,7 @@ import Card from 'components/Card'
 
 import API from '../mixins/API'
 
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Index',
@@ -41,17 +41,13 @@ export default {
       setUsers: 'user/setUsers'
     }),
 
+    ...mapGetters({
+      GET_USERS: 'user/GET_USERS'
+    }),
+
     getUsers (quantity) {
-      const URL = `${this.API_URL}?results=${quantity}`
-
       this.setUsers(quantity)
-
-      this.$axios
-        .get(URL)
-        .then(users => {
-          this.users = users.data.results
-          console.log(this.users)
-        })
+        .then(() => { this.users = this.GET_USERS() })
         .catch(error => console.error(error))
     }
   }

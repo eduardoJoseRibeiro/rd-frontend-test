@@ -8,12 +8,15 @@ const setUser = ({ commit }, obj) => {
 const setUsers = ({ commit }, quantity) => {
   const URL = `${API}?results=${quantity}`
 
-  axios
-    .get(URL)
-    .then(users => {
-      commit('SET_USERS', users.data.results)
-    })
-    .catch(error => console.error(error))
+  return new Promise((resolve, reject) => {
+    axios
+      .get(URL)
+      .then(users => {
+        commit('SET_USERS', users.data.results)
+        resolve()
+      })
+      .catch(error => reject(error))
+  })
 }
 export default {
   setUser,
