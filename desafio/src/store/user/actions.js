@@ -7,12 +7,14 @@ const setUser = ({ commit }, obj) => {
 }
 const setUsers = ({ commit }, quantity) => {
   const URL = `${API}?results=${quantity}`
+  commit('SET_IS_INIT', true)
 
   axios
     .get(URL)
     .then(users => {
       commit('SET_USERS', users.data.results)
       commit('SET_FILTER_USERS', users.data.results)
+      commit('SET_IS_INIT', false)
     })
     .catch(error => console.warn(error))
 }

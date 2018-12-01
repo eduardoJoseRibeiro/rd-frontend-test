@@ -3,7 +3,7 @@
     <my-card :users="users"/>
     <div v-if="Object.keys(users).length === 0" class="table__full withoutUser">
       <h2>
-        Nenhum Usuário Encontrado!
+        {{ messageWithoutUser }}
       </h2>
     </div>
   </q-page>
@@ -43,6 +43,11 @@ export default {
   computed: {
     users () {
       return this.GET_FILTERED_USERS()
+    },
+
+    messageWithoutUser () {
+      if (Object.keys(this.users).length === 0 && this.GET_IS_INIT()) return 'Carregando...'
+      return 'Nenhum Usuário Encontrado!'
     }
   },
 
@@ -52,7 +57,8 @@ export default {
     }),
 
     ...mapGetters({
-      GET_FILTERED_USERS: 'user/GET_FILTERED_USERS'
+      GET_FILTERED_USERS: 'user/GET_FILTERED_USERS',
+      GET_IS_INIT: 'user/GET_IS_INIT'
     }),
 
     getUsers (quantity) {

@@ -1,5 +1,6 @@
 export default {
   user: {},
   users: [],
-  filterUsers: []
+  filterUsers: [],
+  isInit: true
 }
