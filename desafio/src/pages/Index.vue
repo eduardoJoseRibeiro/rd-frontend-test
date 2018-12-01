@@ -12,6 +12,8 @@ import Card from 'components/Card'
 
 import API from '../mixins/API'
 
+import { mapActions } from 'vuex'
+
 export default {
   name: 'Index',
 
@@ -35,8 +37,14 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      setUsers: 'user/setUsers'
+    }),
+
     getUsers (quantity) {
       const URL = `${this.API_URL}?results=${quantity}`
+
+      this.setUsers(quantity)
 
       this.$axios
         .get(URL)
