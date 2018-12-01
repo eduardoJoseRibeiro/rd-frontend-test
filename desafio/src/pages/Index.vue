@@ -27,7 +27,7 @@ export default {
 
   data () {
     return {
-      users: {},
+      // users: {},
       quantity: 50
     }
   },
@@ -36,18 +36,25 @@ export default {
     this.getUsers(this.quantity)
   },
 
+  computed: {
+    users () {
+      return this.GET_FILTERED_USERS()
+    }
+  },
+
   methods: {
     ...mapActions({
       setUsers: 'user/setUsers'
     }),
 
     ...mapGetters({
-      GET_USERS: 'user/GET_USERS'
+      GET_USERS: 'user/GET_USERS',
+      GET_FILTERED_USERS: 'user/GET_FILTERED_USERS'
     }),
 
     getUsers (quantity) {
       this.setUsers(quantity)
-        .then(() => { this.users = this.GET_USERS() })
+        .then(() => { console.log(this.GET_FILTERED_USERS()) })
         .catch(error => console.error(error))
     }
   }
