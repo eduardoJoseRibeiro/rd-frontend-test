@@ -8,16 +8,13 @@ const setUser = ({ commit }, obj) => {
 const setUsers = ({ commit }, quantity) => {
   const URL = `${API}?results=${quantity}`
 
-  return new Promise((resolve, reject) => {
-    axios
-      .get(URL)
-      .then(users => {
-        commit('SET_USERS', users.data.results)
-        commit('SET_FILTER_USERS', users.data.results)
-        resolve()
-      })
-      .catch(error => reject(error))
-  })
+  axios
+    .get(URL)
+    .then(users => {
+      commit('SET_USERS', users.data.results)
+      commit('SET_FILTER_USERS', users.data.results)
+    })
+    .catch(error => console.warn(error))
 }
 const setFilterUsers = ({ commit }, params) => {
   let exp = new RegExp(params.term.trim(), 'i')

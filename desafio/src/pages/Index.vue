@@ -1,6 +1,11 @@
 <template>
-  <q-page class="flex flex-center" padding>
+  <q-page class="flex" padding style="min-height: none">
     <my-card :users="users"/>
+    <div v-if="Object.keys(users).length === 0" class="table__full withoutUser">
+      <h2>
+        Nenhum Usuário Encontrado!
+      </h2>
+    </div>
   </q-page>
 </template>
 
@@ -27,7 +32,6 @@ export default {
 
   data () {
     return {
-      // users: {},
       quantity: 50
     }
   },
@@ -48,15 +52,23 @@ export default {
     }),
 
     ...mapGetters({
-      GET_USERS: 'user/GET_USERS',
       GET_FILTERED_USERS: 'user/GET_FILTERED_USERS'
     }),
 
     getUsers (quantity) {
       this.setUsers(quantity)
-        .then(() => { console.log(this.GET_FILTERED_USERS()) })
-        .catch(error => console.error(error))
     }
   }
 }
 </script>
+<style lang="stylus">
+@import "~variables"
+
+.q-layout-page.flex.layout-padding {
+  min-height: 0!important;
+}
+.withoutUser {
+  text-align: center;
+  color: $primary;
+}
+</style>
