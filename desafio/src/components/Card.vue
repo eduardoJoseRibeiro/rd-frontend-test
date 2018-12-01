@@ -1,43 +1,38 @@
 <template>
-  <table class="table">
-    <tbody>
-      <!-- Por algum motivo, existe usuários que não possuem ID, devido a isso eu criei o v-if -->
-      <tr
+  <!-- <table class="table"> -->
+    <div style="min-width: 100%" class="table__full">
+      <div
         v-for="user in users"
         :key="user.id.value"
-        class="table__content"
+        class="table__content row"
         @click="goUser(user.id.value)"
         v-if="user.id.value">
-        <td>
-          <img :src="user.picture.thumbnail" alt="" class="table__content--img">
-        </td>
-        <td class="table__content--main capitalize">
-          {{ user.name.first }}
-        </td>
-        <td class="table__content--normal lowercase">
-          {{ user.email }}
-        </td>
-        <td class="table__content--normal">
-          {{ user.cell }}
-        </td>
-        <td class="table__content--normal capitalize">
-          {{ user.location.city }} - <span class="uppercase"> {{ user.location.state }} </span>
-        </td>
-        <td class="table__content--normal">
-          <q-icon name="remove_circle"/>
-        </td>
-        <td class="table__content--normal">
-          <q-icon name="reply"/>
-        </td>
-        <td class="table__content--normal">
-          <q-icon name="save"/>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          <div class="col">
+            <img :src="user.picture.thumbnail" alt="" class="table__content--img">
+          </div>
+          <div class="table__content--main capitalize col-2">
+            {{ user.name.first }}
+          </div>
+          <div class="table__content--normal lowercase col-3">
+            {{ user.email }}
+          </div>
+          <div class="table__content--normal col-2">
+            {{ user.cell }}
+          </div>
+          <div class="table__content--normal capitalize col-3">
+            {{ user.location.city }} - <span class="uppercase"> {{ user.location.state }} </span>
+          </div>
+          <div class="table__content--normal col">
+            <q-icon name="remove_circle"/>
+            <q-icon name="reply"/>
+            <q-icon name="save"/>
+          </div>
+      </div>
+    </div>
 </template>
 
 <script>
+
 export default {
   name: 'Card',
 
@@ -48,7 +43,13 @@ export default {
   },
 
   data () {
-    return {}
+    return {
+      columns: [
+        {
+          field: ''
+        }
+      ]
+    }
   },
 
   methods: {
@@ -64,16 +65,19 @@ export default {
 
 $backHover = #f9f9f9;
 
-.table {
-  border-radius: 10px;
+.table__full {
+  border-radius: 5px;
   background-color: white;
+  min-width: 100%;
+  box-shadow: 0px 0px 10px 0px rgba(171,171,171,1);
 }
 
 .table__content {
   cursor: pointer;
+  border-bottom: 2px solid #e0e0e0;
+  padding: 10px;
   &:hover {
     background-color: $backHover;
-    border-color: $backHover;
   }
 }
 

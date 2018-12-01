@@ -123,6 +123,7 @@ export default {
   font-size: 1.2rem;
   margin-top: 10px;
   margin-bottom: 10px;
+
   .q-icon,
   .q-icon:focus {
     color: $secondary;
