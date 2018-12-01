@@ -19,13 +19,15 @@
           <div class="table__content--normal col-2">
             {{ user.cell }}
           </div>
-          <div class="table__content--normal capitalize col-3">
+          <div class="table__content--normal capitalize col-2">
             {{ user.location.city }} - <span class="uppercase"> {{ user.location.state }} </span>
           </div>
-          <div class="table__content--normal col">
-            <q-icon name="remove_circle"/>
-            <q-icon name="reply"/>
-            <q-icon name="save"/>
+          <div class="table__content--normal col-2">
+            <div style="float: right;">
+              <q-icon name="delete"/>
+              <q-icon name="select_all"/>
+              <q-icon name="done"/>
+            </div>
           </div>
       </div>
     </div>
@@ -97,6 +99,11 @@ $backHover = #f9f9f9;
 .table__content--normal {
   color: $quaternary;
   padding-top: 12px;
+}
+
+.table__content--normal .q-icon {
+  font-size: 1.3rem;
+  margin-right: 1rem;
 }
 
 .table__line {
