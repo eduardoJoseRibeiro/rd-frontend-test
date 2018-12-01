@@ -19,7 +19,8 @@
             v-model="search_term"
             class="search"
             clearable
-            placeholder="Buscar"/>
+            placeholder="Buscar"
+            @input="filterUsers"/>
         </div>
 
         <div class="col-2"></div>
@@ -65,6 +66,7 @@
 
 <script>
 import { openURL, QSearch } from 'quasar'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'MyLayout',
@@ -81,7 +83,23 @@ export default {
   },
 
   methods: {
-    openURL
+    openURL,
+
+    ...mapActions({
+      setFilterUsers: 'user/setFilterUsers'
+    }),
+
+    ...mapGetters({
+      GET_USERS: 'user/GET_USERS'
+    }),
+
+    filterUsers () {
+      const params = {
+        term: this.search_term,
+        users: this.GET_USERS()
+      }
+      this.setFilterUsers(params)
+    }
   }
 }
 </script>
