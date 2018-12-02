@@ -29,6 +29,9 @@ const setFilterUsers = ({ commit }, params) => {
 
   commit('SET_FILTER_USERS', usersFilter)
 }
+const setRawFilter = ({ commit }, users) => {
+  commit('SET_FILTER_USERS', users)
+}
 const setAllUsers = ({ commit }, params) => {
   if (params.route !== 'todos') commit('SET_SINGLE_USER', params.user)
   if (params.route === 'atendidos') commit('REMOVE_DONE_USER', params.index)
@@ -48,6 +51,7 @@ export default {
   setUser,
   setUsers,
   setFilterUsers,
+  setRawFilter,
   setAllUsers,
   setRemovedUsers,
   setDoneUsers

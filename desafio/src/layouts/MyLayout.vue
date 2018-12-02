@@ -82,21 +82,58 @@ export default {
     }
   },
 
+  computed: {
+    rota () {
+      return this.$route.name || ''
+    }
+  },
+
+  watch: {
+    rota: {
+      handler: function (value) {
+        switch (value) {
+          case 'todos':
+            this.setRawFilter(this.GET_USERS())
+            break
+          case 'lixeira':
+            this.setRawFilter(this.GET_REMOVED_USERS())
+            break
+          case 'atendidos':
+            this.setRawFilter(this.GET_DONE_USERS())
+            break
+        }
+      }
+    }
+  },
+
   methods: {
     openURL,
 
     ...mapActions({
-      setFilterUsers: 'user/setFilterUsers'
+      setFilterUsers: 'user/setFilterUsers',
+      setRawFilter: 'user/setRawFilter'
     }),
 
     ...mapGetters({
-      GET_USERS: 'user/GET_USERS'
+      GET_USERS: 'user/GET_USERS',
+      GET_REMOVED_USERS: 'user/GET_REMOVED_USERS',
+      GET_DONE_USERS: 'user/GET_DONE_USERS'
     }),
 
     filterUsers () {
       const params = {
-        term: this.search_term,
-        users: this.GET_USERS()
+        term: this.search_term
+      }
+      switch (this.$route.name) {
+        case 'todos':
+          params.users = this.GET_USERS()
+          break
+        case 'lixeira':
+          params.users = this.GET_REMOVED_USERS()
+          break
+        case 'atendidos':
+          params.users = this.GET_DONE_USERS()
+          break
       }
       this.setFilterUsers(params)
     }

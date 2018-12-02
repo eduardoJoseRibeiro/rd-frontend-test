@@ -42,14 +42,7 @@ export default {
 
   computed: {
     users () {
-      switch (this.$route.name) {
-        case 'todos':
-          return this.GET_FILTERED_USERS()
-        case 'lixeira':
-          return this.GET_REMOVED_USERS()
-        case 'atendidos':
-          return this.GET_DONE_USERS()
-      }
+      return this.GET_FILTERED_USERS()
     },
 
     messageWithoutUser () {

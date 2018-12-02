@@ -16,7 +16,7 @@
         />
       </q-toolbar>
     </q-layout-header>
-    <q-layout-drawer v-model="drawer" :width="200" :breakpoint="300">
+    <q-layout-drawer v-model="drawer" :width="0" :breakpoint="0">
       <div v-for="n in 50" :key="n">Drawer</div>
     </q-layout-drawer>
     <q-page-container>
