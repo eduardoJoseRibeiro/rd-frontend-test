@@ -13,7 +13,7 @@ const setUsers = ({ commit }, quantity) => {
     .get(URL)
     .then(users => {
       commit('SET_USERS', users.data.results)
-      commit('SET_FILTER_USERS', users.data.results)
+      commit('SET_CONCAT_FILTER_USERS', users.data.results)
       commit('SET_IS_INIT', false)
     })
     .catch(error => console.warn(error))

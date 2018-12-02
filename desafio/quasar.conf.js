@@ -43,6 +43,7 @@ module.exports = function (ctx) {
     framework: {
       components: [
         'QAjaxBar',
+        'QInfiniteScroll',
         'QLayout',
         'QLayoutHeader',
         'QLayoutDrawer',

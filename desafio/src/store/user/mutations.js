@@ -4,7 +4,7 @@ const SET_USER = (state, obj) => {
 
 // TODOS USUÁRIOS
 const SET_USERS = (state, obj) => {
-  state.users = obj
+  state.users = state.users.concat(obj)
 }
 const SET_SINGLE_USER = (state, obj) => {
   state.users.push(obj)
@@ -15,6 +15,9 @@ const REMOVE_USER = (state, index) => {
 
 const SET_FILTER_USERS = (state, obj) => {
   state.filterUsers = obj
+}
+const SET_CONCAT_FILTER_USERS = (state, obj) => {
+  state.filterUsers = state.filterUsers.concat(obj)
 }
 
 // USUÁRIOS REMOVIDOS
@@ -44,6 +47,7 @@ export default{
   REMOVE_USER,
 
   SET_FILTER_USERS,
+  SET_CONCAT_FILTER_USERS,
 
   SET_REMOVED_USERS,
   REMOVE_REMOVED_USER,

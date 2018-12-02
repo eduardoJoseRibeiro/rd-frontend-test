@@ -59,20 +59,25 @@
     </q-layout-drawer>
 
     <q-page-container>
-      <router-view />
+      <q-infinite-scroll :handler="loadMore">
+        <router-view />
+        <q-spinner-dots slot="message" :size="40" style="margin-left: 47%;"></q-spinner-dots>
+      </q-infinite-scroll>
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import { openURL, QSearch } from 'quasar'
+import { openURL, QSearch, QSpinner, QSpinnerDots } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'MyLayout',
 
   components: {
-    QSearch
+    QSearch,
+    QSpinner,
+    QSpinnerDots
   },
 
   data () {
@@ -111,7 +116,8 @@ export default {
 
     ...mapActions({
       setFilterUsers: 'user/setFilterUsers',
-      setRawFilter: 'user/setRawFilter'
+      setRawFilter: 'user/setRawFilter',
+      setUsers: 'user/setUsers'
     }),
 
     ...mapGetters({
@@ -136,6 +142,25 @@ export default {
           break
       }
       this.setFilterUsers(params)
+    },
+
+    selectUser () {
+      switch (this.$route.name) {
+        case 'todos':
+          return this.GET_USERS()
+        case 'lixeira':
+          return this.GET_REMOVED_USERS()
+        case 'atendidos':
+          return this.GET_DONE_USERS()
+      }
+    },
+
+    loadMore (index, done) {
+      console.log('Carregando Mais')
+      setTimeout(() => {
+        this.setUsers(50)
+        done()
+      }, 200)
     }
   }
 }
