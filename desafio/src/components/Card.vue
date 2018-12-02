@@ -2,31 +2,36 @@
   <!-- <table class="table"> -->
     <div style="min-width: 100%" class="table__full">
       <div
-        v-for="user in users"
+        v-for="(user, index) in users"
         :key="user.id.value"
         class="table__content row"
-        @click="goUser(user.id.value)"
         v-if="user.id.value">
-          <div class="col">
+          <div class="col" @click="goUser(user.id.value)">
             <img :src="user.picture.thumbnail" alt="" class="table__content--img">
           </div>
-          <div class="table__content--main capitalize col-2">
+          <div class="table__content--main capitalize col-2" @click="goUser(user.id.value)">
             {{ user.name.first }}
           </div>
-          <div class="table__content--normal lowercase col-3">
+          <div class="table__content--normal lowercase col-3" @click="goUser(user.id.value)">
             {{ user.email }}
           </div>
-          <div class="table__content--normal col-2">
+          <div class="table__content--normal col-2" @click="goUser(user.id.value)">
             {{ user.cell }}
           </div>
-          <div class="table__content--normal capitalize col-2">
+          <div class="table__content--normal capitalize col-2" @click="goUser(user.id.value)">
             {{ user.location.city }} - <span class="uppercase"> {{ user.location.state }} </span>
           </div>
           <div class="table__content--normal col-2">
-            <div style="float: right;">
-              <q-icon name="delete"/>
-              <q-icon name="select_all"/>
-              <q-icon name="done"/>
+            <div style="float: right;" class="row">
+              <div @click="removeUser(index, user)">
+                <q-icon name="delete"/>
+              </div>
+              <div @click="allUser()">
+                <q-icon name="select_all"/>
+              </div>
+              <div @click="doneUser()">
+                <q-icon name="done"/>
+              </div>
             </div>
           </div>
       </div>
@@ -34,6 +39,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Card',
@@ -55,8 +61,28 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      setRemovedUsers: 'user/setRemovedUsers'
+    }),
+
     goUser (id) {
       this.$router.push({name: 'user', params: { id }})
+    },
+
+    removeUser (index, user) {
+      const params = {
+        index,
+        user
+      }
+      this.setRemovedUsers(params)
+    },
+
+    allUser () {
+
+    },
+
+    doneUser () {
+
     }
   }
 }

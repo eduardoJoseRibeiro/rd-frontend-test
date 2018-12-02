@@ -29,8 +29,13 @@ const setFilterUsers = ({ commit }, params) => {
 
   commit('SET_FILTER_USERS', usersFilter)
 }
+const setRemovedUsers = ({ commit }, params) => {
+  commit('SET_REMOVED_USERS', params.user)
+  commit('REMOVE_USER', params.index)
+}
 export default {
   setUser,
   setUsers,
-  setFilterUsers
+  setFilterUsers,
+  setRemovedUsers
 }
