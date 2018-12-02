@@ -42,7 +42,12 @@ export default {
 
   computed: {
     users () {
-      return this.GET_FILTERED_USERS()
+      switch (this.$route.name) {
+        case 'todos':
+          return this.GET_FILTERED_USERS()
+        case 'lixeira':
+          return this.GET_REMOVED_USERS()
+      }
     },
 
     messageWithoutUser () {
@@ -58,6 +63,7 @@ export default {
 
     ...mapGetters({
       GET_FILTERED_USERS: 'user/GET_FILTERED_USERS',
+      GET_REMOVED_USERS: 'user/GET_REMOVED_USERS',
       GET_IS_INIT: 'user/GET_IS_INIT'
     }),
 
