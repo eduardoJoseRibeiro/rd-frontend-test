@@ -16,9 +16,7 @@
         />
       </q-toolbar>
     </q-layout-header>
-    <q-layout-drawer v-model="drawer" :width="0" :breakpoint="0">
-      <div v-for="n in 50" :key="n">Drawer</div>
-    </q-layout-drawer>
+
     <q-page-container>
       <!-- This is where pages get injected -->
       <router-view />
@@ -31,10 +29,7 @@
 export default {
   name: 'LayoutUsers',
   data () {
-    return {
-      leftDrawer: false,
-      drawer: false
-    }
+    return {}
   }
 }
 </script>
