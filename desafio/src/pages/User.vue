@@ -43,6 +43,8 @@
 import API from '../mixins/API'
 import moment from 'moment'
 
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'User',
 
@@ -81,18 +83,29 @@ export default {
   },
 
   methods: {
+    ...mapGetters({
+      GET_USER: 'user/GET_USER'
+    }),
+
     getUser (id) {
-      const URL = `${this.API_URL}?id=${id}`
+      const hasUser = Object.keys(this.GET_USER()).length !== 0
+
       return new Promise((resolve, reject) => {
-        this.$axios
-          .get(URL)
-          .then(user => {
-            this.user = user.data.results[0]
-            resolve()
-          })
-          .catch(error => {
-            reject(error)
-          })
+        if (hasUser) {
+          this.user = this.GET_USER()
+          resolve()
+        } else {
+          const URL = `${this.API_URL}?id=${id}`
+          this.$axios
+            .get(URL)
+            .then(user => {
+              this.user = user.data.results[0]
+              resolve()
+            })
+            .catch(error => {
+              reject(error)
+            })
+        }
       })
     },
     /**

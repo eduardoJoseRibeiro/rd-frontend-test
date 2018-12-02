@@ -3,7 +3,7 @@ import axios from 'axios'
 const API = 'https://randomuser.me/api/'
 
 const setUser = ({ commit }, obj) => {
-  commit('SET_USER', { obj })
+  commit('SET_USER', obj)
 }
 const setUsers = ({ commit }, quantity) => {
   const URL = `${API}?results=${quantity}`

@@ -6,19 +6,19 @@
         :key="user.id.value"
         class="table__content row"
         v-if="user.id.value">
-          <div class="col" @click="goUser(user.id.value)">
+          <div class="col" @click="goUser(user.id.value, user)">
             <img :src="user.picture.thumbnail" alt="" class="table__content--img">
           </div>
-          <div class="table__content--main capitalize col-2" @click="goUser(user.id.value)">
+          <div class="table__content--main capitalize col-2" @click="goUser(user.id.value, user)">
             {{ user.name.first }}
           </div>
-          <div class="table__content--normal lowercase col-3" @click="goUser(user.id.value)">
+          <div class="table__content--normal lowercase col-3" @click="goUser(user.id.value, user)">
             {{ user.email }}
           </div>
-          <div class="table__content--normal col-2" @click="goUser(user.id.value)">
+          <div class="table__content--normal col-2" @click="goUser(user.id.value, user)">
             {{ user.cell }}
           </div>
-          <div class="table__content--normal capitalize col-2" @click="goUser(user.id.value)">
+          <div class="table__content--normal capitalize col-2" @click="goUser(user.id.value, user)">
             {{ user.location.city }} - <span class="uppercase"> {{ user.location.state }} </span>
           </div>
           <div class="table__content--normal col-2">
@@ -64,10 +64,12 @@ export default {
     ...mapActions({
       setRemovedUsers: 'user/setRemovedUsers',
       setAllUsers: 'user/setAllUsers',
-      setDoneUsers: 'user/setDoneUsers'
+      setDoneUsers: 'user/setDoneUsers',
+      setUser: 'user/setUser'
     }),
 
-    goUser (id) {
+    goUser (id, user) {
+      this.setUser(user)
       this.$router.push({name: 'user', params: { id }})
     },
 

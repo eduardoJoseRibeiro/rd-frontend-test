@@ -64,7 +64,9 @@ export default {
     }),
 
     getUsers (quantity) {
-      this.setUsers(quantity)
+      const hasUsers = Object.keys(this.users).length !== 0
+
+      if (!hasUsers) this.setUsers(quantity)
     }
   }
 }
