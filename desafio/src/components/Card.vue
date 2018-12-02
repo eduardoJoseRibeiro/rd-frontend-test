@@ -26,7 +26,7 @@
               <div @click="removeUser(index, user)">
                 <q-icon name="delete"/>
               </div>
-              <div @click="allUser()">
+              <div @click="allUser(index, user)">
                 <q-icon name="select_all"/>
               </div>
               <div @click="doneUser(index, user)">
@@ -63,6 +63,7 @@ export default {
   methods: {
     ...mapActions({
       setRemovedUsers: 'user/setRemovedUsers',
+      setAllUsers: 'user/setAllUsers',
       setDoneUsers: 'user/setDoneUsers'
     }),
 
@@ -75,8 +76,9 @@ export default {
       this.setRemovedUsers(params)
     },
 
-    allUser () {
-
+    allUser (index, user) {
+      const params = this.makeParams(index, user)
+      this.setAllUsers(params)
     },
 
     doneUser (index, user) {

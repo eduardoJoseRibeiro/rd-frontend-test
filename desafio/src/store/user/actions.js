@@ -29,6 +29,11 @@ const setFilterUsers = ({ commit }, params) => {
 
   commit('SET_FILTER_USERS', usersFilter)
 }
+const setAllUsers = ({ commit }, params) => {
+  if (params.route !== 'todos') commit('SET_SINGLE_USER', params.user)
+  if (params.route === 'atendidos') commit('REMOVE_DONE_USER', params.index)
+  if (params.route === 'lixeira') commit('REMOVE_REMOVED_USER', params.index)
+}
 const setRemovedUsers = ({ commit }, params) => {
   if (params.route !== 'lixeira') commit('SET_REMOVED_USERS', params.user)
   if (params.route === 'atendidos') commit('REMOVE_DONE_USER', params.index)
@@ -43,6 +48,7 @@ export default {
   setUser,
   setUsers,
   setFilterUsers,
+  setAllUsers,
   setRemovedUsers,
   setDoneUsers
 }

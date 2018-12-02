@@ -6,6 +6,9 @@ const SET_USER = (state, obj) => {
 const SET_USERS = (state, obj) => {
   state.users = obj
 }
+const SET_SINGLE_USER = (state, obj) => {
+  state.users.push(obj)
+}
 const REMOVE_USER = (state, index) => {
   state.users.splice(index, 1)
 }
@@ -37,6 +40,7 @@ export default{
   SET_USER,
 
   SET_USERS,
+  SET_SINGLE_USER,
   REMOVE_USER,
 
   SET_FILTER_USERS,
