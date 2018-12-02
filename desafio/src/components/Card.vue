@@ -29,7 +29,7 @@
               <div @click="allUser()">
                 <q-icon name="select_all"/>
               </div>
-              <div @click="doneUser()">
+              <div @click="doneUser(index, user)">
                 <q-icon name="done"/>
               </div>
             </div>
@@ -62,7 +62,8 @@ export default {
 
   methods: {
     ...mapActions({
-      setRemovedUsers: 'user/setRemovedUsers'
+      setRemovedUsers: 'user/setRemovedUsers',
+      setDoneUsers: 'user/setDoneUsers'
     }),
 
     goUser (id) {
@@ -70,10 +71,7 @@ export default {
     },
 
     removeUser (index, user) {
-      const params = {
-        index,
-        user
-      }
+      const params = this.makeParams(index, user)
       this.setRemovedUsers(params)
     },
 
@@ -81,8 +79,17 @@ export default {
 
     },
 
-    doneUser () {
+    doneUser (index, user) {
+      const params = this.makeParams(index, user)
+      this.setDoneUsers(params)
+    },
 
+    makeParams (index, user) {
+      return {
+        index,
+        user,
+        route: this.$route.name
+      }
     }
   }
 }

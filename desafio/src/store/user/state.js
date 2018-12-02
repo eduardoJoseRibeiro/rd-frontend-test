@@ -3,5 +3,6 @@ export default {
   users: [],
   filterUsers: [],
   removedUsers: [],
+  doneUsers: [],
   isInit: true
 }

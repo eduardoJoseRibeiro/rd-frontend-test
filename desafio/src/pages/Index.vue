@@ -47,6 +47,8 @@ export default {
           return this.GET_FILTERED_USERS()
         case 'lixeira':
           return this.GET_REMOVED_USERS()
+        case 'atendidos':
+          return this.GET_DONE_USERS()
       }
     },
 
@@ -64,6 +66,7 @@ export default {
     ...mapGetters({
       GET_FILTERED_USERS: 'user/GET_FILTERED_USERS',
       GET_REMOVED_USERS: 'user/GET_REMOVED_USERS',
+      GET_DONE_USERS: 'user/GET_DONE_USERS',
       GET_IS_INIT: 'user/GET_IS_INIT'
     }),
 
