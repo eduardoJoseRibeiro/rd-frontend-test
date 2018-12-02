@@ -31,10 +31,12 @@ const setFilterUsers = ({ commit }, params) => {
 }
 const setRemovedUsers = ({ commit }, params) => {
   if (params.route !== 'lixeira') commit('SET_REMOVED_USERS', params.user)
+  if (params.route === 'atendidos') commit('REMOVE_DONE_USER', params.index)
   if (params.route === 'todos') commit('REMOVE_USER', params.index)
 }
 const setDoneUsers = ({ commit }, params) => {
   if (params.route !== 'atendidos') commit('SET_DONE_USERS', params.user)
+  if (params.route === 'lixeira') commit('REMOVE_REMOVED_USER', params.index)
   if (params.route === 'todos') commit('REMOVE_USER', params.index)
 }
 export default {
