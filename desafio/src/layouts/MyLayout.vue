@@ -106,6 +106,8 @@ export default {
           case 'atendidos':
             this.setRawFilter(this.GET_DONE_USERS())
             break
+          case 'home':
+            this.$router.push({name: 'todos'})
         }
       }
     }
