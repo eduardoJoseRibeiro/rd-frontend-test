@@ -20,7 +20,11 @@
             class="search"
             clearable
             placeholder="Buscar"
-            @input="filterUsers"/>
+            @input="filterUsers">
+            <q-autocomplete
+              @search="autocomplete"
+            />
+          </q-search>
         </div>
 
         <div class="col-2"></div>
@@ -68,7 +72,7 @@
 </template>
 
 <script>
-import { openURL, QSearch, QSpinner, QSpinnerDots } from 'quasar'
+import { openURL, QSearch, QSpinner, QSpinnerDots, QAutocomplete } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -77,7 +81,8 @@ export default {
   components: {
     QSearch,
     QSpinner,
-    QSpinnerDots
+    QSpinnerDots,
+    QAutocomplete
   },
 
   data () {
@@ -126,7 +131,8 @@ export default {
     ...mapGetters({
       GET_USERS: 'user/GET_USERS',
       GET_REMOVED_USERS: 'user/GET_REMOVED_USERS',
-      GET_DONE_USERS: 'user/GET_DONE_USERS'
+      GET_DONE_USERS: 'user/GET_DONE_USERS',
+      GET_TERM_SEARCH: 'user/GET_TERM_SEARCH'
     }),
 
     filterUsers () {
@@ -167,6 +173,24 @@ export default {
         this.setUsers(50)
         done()
       }, 200)
+    },
+
+    autocomplete (term, done) {
+      const lastSearch = this.GET_TERM_SEARCH()
+      let exp = new RegExp(term.trim(), 'i')
+
+      let matches = lastSearch.filter(search => {
+        return exp.test(search)
+      })
+
+      matches = matches.map(search => {
+        return {
+          value: search,
+          label: search
+        }
+      })
+
+      done(matches)
     }
   }
 }
