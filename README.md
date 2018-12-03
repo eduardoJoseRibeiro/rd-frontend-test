@@ -77,5 +77,5 @@ O sistema deve seguir o layout proposto, com isso as funcionalidades a serem des
  - [x]  Utilizar pré-processador de CSS (Fique a vontade para usar alguma lib/framework css); **Stylus**
  - [x]  ECMAScript 6;
  - [x]  Flexbox;
- - [x]  Documentar, no mínimo, como executar o projeto;
+ - [x]  Documentar, no mínimo, como executar o projeto; [Pode ser acessada em https://github.com/eduardoJoseRibeiro/rd-frontend-test/tree/master/desafio]
  - [x]  Armazenar o código fonte no Github;
