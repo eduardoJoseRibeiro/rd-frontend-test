@@ -7,7 +7,6 @@
       >
     </p>
     <p class="text-faded">
-      <!-- Sorry, nothing here... -->
       {{ $t('erro404') }}
       <strong>(404)</strong>
     </p>
@@ -16,7 +15,6 @@
       style="width:200px;"
       @click="$router.push('/')"
     >
-      <!-- Go back -->
       {{ $t('goBack') }}
     </q-btn>
   </div>
