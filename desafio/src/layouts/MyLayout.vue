@@ -119,7 +119,8 @@ export default {
     ...mapActions({
       setFilterUsers: 'user/setFilterUsers',
       setRawFilter: 'user/setRawFilter',
-      setUsers: 'user/setUsers'
+      setUsers: 'user/setUsers',
+      setTermSearch: 'user/setTermSearch'
     }),
 
     ...mapGetters({
@@ -132,6 +133,9 @@ export default {
       const params = {
         term: this.search_term
       }
+
+      this.setTermSearch(this.search_term)
+
       switch (this.$route.name) {
         case 'todos':
           params.users = this.GET_USERS()

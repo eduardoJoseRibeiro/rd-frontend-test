@@ -39,6 +39,10 @@ const REMOVE_DONE_USER = (state, index) => {
 const SET_IS_INIT = (state, isInit) => {
   state.isInit = isInit
 }
+
+const SET_TERM_SEARCH = (state, term) => {
+  state.termSearch.push(term)
+}
 export default{
   SET_USER,
 
@@ -55,5 +59,7 @@ export default{
   SET_DONE_USERS,
   REMOVE_DONE_USER,
 
-  SET_IS_INIT
+  SET_IS_INIT,
+
+  SET_TERM_SEARCH
 }

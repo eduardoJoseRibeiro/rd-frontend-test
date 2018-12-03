@@ -47,6 +47,9 @@ const setDoneUsers = ({ commit }, params) => {
   if (params.route === 'lixeira') commit('REMOVE_REMOVED_USER', params.index)
   if (params.route === 'todos') commit('REMOVE_USER', params.index)
 }
+const setTermSearch = ({ commit }, term) => {
+  commit('SET_TERM_SEARCH', term)
+}
 export default {
   setUser,
   setUsers,
@@ -54,5 +57,6 @@ export default {
   setRawFilter,
   setAllUsers,
   setRemovedUsers,
-  setDoneUsers
+  setDoneUsers,
+  setTermSearch
 }

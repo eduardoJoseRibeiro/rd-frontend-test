@@ -4,5 +4,6 @@ export default {
   filterUsers: [],
   removedUsers: [],
   doneUsers: [],
+  termSearch: [],
   isInit: true
 }
