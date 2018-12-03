@@ -45,7 +45,7 @@ O sistema deve seguir o layout proposto, com isso as funcionalidades a serem des
  - [x]  Paginação númerada; **Usei paginação Infinita**
  - [x]  Armazenar todas as informações no estado utilizando a arquitetura Flux (Redux, Vuex e etc);
  - [x]  Ao navegar nos filtros laterais, todas as informações devem já estar no estado;
- - [ ]  Ao pesquisar, deverá ser armazenado no estado todas as pesquisas realizadas na sessão atual;
+ - [x]  Ao pesquisar, deverá ser armazenado no estado todas as pesquisas realizadas na sessão atual;
  - [x]  Configurar eslint;
  - [ ]  (Desejável/Bônus) Microinterações na interface;
  - [ ]  (Desejável/Bônus) Testes unitários;
@@ -58,9 +58,9 @@ O sistema deve seguir o layout proposto, com isso as funcionalidades a serem des
  - [ ]  Microinterações na interface;
  - [ ]  Testes unitários (mínimo de 70% de coverage);
  - [ ]  Execução dos testes unitários no build do projeto;
- - [ ]  Utilizar algum bundle size (Webpack, Rollup ou Parcel);
+ - [ ]  Utilizar algum bundle size (Webpack, Rollup ou Parcel); (Quasar utiliza Webpack implicitamente)
  - [ ]  Utilizar alguma metodologia para CSS (BEM, SMACSS, OOCSS, ATOMIC CSS, DRY CSS);
- - [ ]  (Desejável/Bônus) Fazer internacionalização da aplicação;
+ - [x]  (Desejável/Bônus) Fazer internacionalização da aplicação;
  - [ ]  (Desejável/Bônus) Realizar testes de snapshot;
  - [ ]  (Desejável/Bônus) Apresentação do coverage dos testes unitários;
  - [ ]  (Desejável/Bônus) Criar o Story Book dos Components;
