@@ -7,7 +7,24 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+
+  created () {
+    let linguaUsuario = this.$q.i18n.getLocale()
+    // Traduz os componentes padrões do QUASAR
+    import(`quasar-framework/i18n/${linguaUsuario}`)
+      .then(lang => {
+        this.$q.i18n.set(lang.default)
+      })
+    // Traduz minha aplicação
+    import(`./i18n/${linguaUsuario}`)
+      .then(lang => {
+        this.$i18n.locale = linguaUsuario
+      })
+      .catch(() => {
+        this.$i18n.locale = 'pt-br'
+      })
+  }
 }
 </script>
 

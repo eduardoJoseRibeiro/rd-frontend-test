@@ -46,8 +46,8 @@ export default {
     },
 
     messageWithoutUser () {
-      if (Object.keys(this.users).length === 0 && this.GET_IS_INIT()) return 'Carregando...'
-      return 'Nenhum Usuário Encontrado!'
+      if (Object.keys(this.users).length === 0 && this.GET_IS_INIT()) return this.$t('loading')
+      return this.$t('noUser')
     }
   },
 

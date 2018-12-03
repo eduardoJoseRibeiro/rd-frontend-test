@@ -19,7 +19,7 @@
             v-model="search_term"
             class="search"
             clearable
-            placeholder="Buscar"
+            :placeholder="$t('search')"
             @input="filterUsers">
             <q-autocomplete
               @search="autocomplete"
@@ -49,15 +49,15 @@
       >
         <q-item :to="{name: 'todos'}">
           <q-item-side icon="select_all"/>
-          <q-item-main label="Todos"/>
+          <q-item-main :label="$t('all')"/>
         </q-item>
         <q-item :to="{name: 'atendidos'}">
           <q-item-side icon="done_all" />
-          <q-item-main label="Atendidos"/>
+          <q-item-main :label="$t('done')"/>
         </q-item>
         <q-item :to="{name: 'lixeira'}">
           <q-item-side icon="delete_sweep"/>
-          <q-item-main label="Lixeira"/>
+          <q-item-main :label="$t('removed')"/>
         </q-item>
       </q-list>
     </q-layout-drawer>

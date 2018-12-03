@@ -82,9 +82,9 @@ export default {
       const params = this.makeParams(index, user)
       this.setRemovedUsers(params)
       if (this.$route.name !== 'lixeira') {
-        this.SuccessNotify(`${user.name.first} Removido com Sucesso!`)
+        this.SuccessNotify(`${user.name.first} ${this.$t('success.removed')}`)
       } else {
-        this.FailNotify(`${user.name.first} já está nessa classificação`)
+        this.FailNotify(`${user.name.first} ${this.$t('alreadyRating')}`)
       }
     },
 
@@ -92,9 +92,9 @@ export default {
       const params = this.makeParams(index, user)
       this.setAllUsers(params)
       if (this.$route.name !== 'todos') {
-        this.SuccessNotify(`${user.name.first} movido para Todos com Sucesso!`)
+        this.SuccessNotify(`${user.name.first} ${this.$t('success.all')}`)
       } else {
-        this.FailNotify(`${user.name.first} já está nessa classificação`)
+        this.FailNotify(`${user.name.first} ${this.$t('alreadyRating')}`)
       }
     },
 
@@ -102,9 +102,9 @@ export default {
       const params = this.makeParams(index, user)
       this.setDoneUsers(params)
       if (this.$route.name !== 'atendidos') {
-        this.SuccessNotify(`${user.name.first} Atendido com Sucesso!`)
+        this.SuccessNotify(`${user.name.first} ${this.$t('success.done')}`)
       } else {
-        this.FailNotify(`${user.name.first} já está nessa classificação`)
+        this.FailNotify(`${user.name.first} ${this.$t('alreadyRating')}`)
       }
     },
 

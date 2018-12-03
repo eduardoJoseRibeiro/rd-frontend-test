@@ -56,7 +56,7 @@ export default {
     return {
       id: this.$route.params.id,
       user: {},
-      message: 'Hi, My name is',
+      message: this.$t('myName'),
       info: '',
       INFO_NAME: 'name',
       INFO_EMAIL: 'email',
@@ -71,7 +71,7 @@ export default {
   created () {
     this.getUser(this.id)
       .then(() => {
-        const info = 'Hi, My name is'
+        const info = this.$t('myName') // 'Hi, My name is'
         const message = this.hasInfo(this.user.name, 'first') + ' ' + this.hasInfo(this.user.name, 'last')
         const icon = this.INFO_NAME
 
@@ -165,32 +165,32 @@ export default {
         {
           name: this.INFO_NAME,
           message: this.hasInfo(USER.name, 'first') + ' ' + this.hasInfo(USER.name, 'last'),
-          info: 'Hi, My name is'
+          info: this.$t('myName') // 'Hi, My name is'
         },
         {
           name: this.INFO_EMAIL,
           message: this.hasInfo(USER.email),
-          info: 'My email address is'
+          info: this.$t('myEmail') // 'My email address is'
         },
         {
           name: this.INFO_BIRTHDAY,
           message: moment(this.hasInfo(USER.dob, 'date')).format('DD/MM/YYYY'),
-          info: 'My birthday is'
+          info: this.$t('myBirthday') // 'My birthday is'
         },
         {
           name: this.INFO_ADDRESS,
           message: this.hasInfo(USER.location, 'street'),
-          info: 'My address is'
+          info: this.$t('myAddress') // 'My address is'
         },
         {
           name: this.INFO_TEL,
           message: this.hasInfo(USER.phone),
-          info: 'My phone number is'
+          info: this.$t('myPhone') // 'My phone number is'
         },
         {
           name: this.INFO_PASS,
           message: this.hasInfo(USER.login, 'password'),
-          info: 'My password is'
+          info: this.$t('myPass') // 'My password is'
         }
       ]
 
