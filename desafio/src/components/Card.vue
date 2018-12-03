@@ -39,10 +39,15 @@
 </template>
 
 <script>
+import Notify from '../mixins/Notify.js'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'Card',
+
+  mixins: [
+    Notify
+  ],
 
   props: {
     users: {
@@ -76,16 +81,31 @@ export default {
     removeUser (index, user) {
       const params = this.makeParams(index, user)
       this.setRemovedUsers(params)
+      if (this.$route.name !== 'lixeira') {
+        this.SuccessNotify(`${user.name.first} Removido com Sucesso!`)
+      } else {
+        this.FailNotify(`${user.name.first} já está nessa classificação`)
+      }
     },
 
     allUser (index, user) {
       const params = this.makeParams(index, user)
       this.setAllUsers(params)
+      if (this.$route.name !== 'todos') {
+        this.SuccessNotify(`${user.name.first} movido para Todos com Sucesso!`)
+      } else {
+        this.FailNotify(`${user.name.first} já está nessa classificação`)
+      }
     },
 
     doneUser (index, user) {
       const params = this.makeParams(index, user)
       this.setDoneUsers(params)
+      if (this.$route.name !== 'atendidos') {
+        this.SuccessNotify(`${user.name.first} Atendido com Sucesso!`)
+      } else {
+        this.FailNotify(`${user.name.first} já está nessa classificação`)
+      }
     },
 
     makeParams (index, user) {

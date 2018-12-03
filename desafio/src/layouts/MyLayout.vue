@@ -140,8 +140,6 @@ export default {
         term: this.search_term
       }
 
-      this.setTermSearch(this.search_term)
-
       switch (this.$route.name) {
         case 'todos':
           params.users = this.GET_USERS()
@@ -154,6 +152,7 @@ export default {
           break
       }
       this.setFilterUsers(params)
+      this.setTermSearch(this.search_term)
     },
 
     selectUser () {
