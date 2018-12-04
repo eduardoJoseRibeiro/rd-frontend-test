@@ -76,7 +76,7 @@ import { openURL, QSearch, QSpinner, QSpinnerDots, QAutocomplete } from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  name: 'MyLayout',
+  name: 'Layout',
 
   components: {
     QSearch,
@@ -101,19 +101,10 @@ export default {
   watch: {
     rota: {
       handler: function (value) {
-        switch (value) {
-          case 'todos':
-            this.setRawFilter(this.GET_USERS())
-            break
-          case 'lixeira':
-            this.setRawFilter(this.GET_REMOVED_USERS())
-            break
-          case 'atendidos':
-            this.setRawFilter(this.GET_DONE_USERS())
-            break
-          case 'home':
-            this.$router.push({name: 'todos'})
-        }
+        const users = this.selectUser(value)
+        this.setRawFilter(users)
+
+        if (value === 'home') this.$router.push({name: 'todos'})
       }
     }
   },
@@ -140,20 +131,7 @@ export default {
         term: this.search_term
       }
 
-      switch (this.$route.name) {
-        case 'todos':
-          params.users = this.GET_USERS()
-          break
-        case 'lixeira':
-          params.users = this.GET_REMOVED_USERS()
-          break
-        case 'atendidos':
-          params.users = this.GET_DONE_USERS()
-          break
-        case 'home':
-          params.users = this.GET_USERS()
-          break
-      }
+      params.users = this.selectUser(this.$route.name)
       this.setFilterUsers(params)
       this.setTermSearch(this.search_term)
     },
