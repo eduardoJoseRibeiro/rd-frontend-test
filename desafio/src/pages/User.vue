@@ -87,6 +87,13 @@ export default {
       GET_USER: 'user/GET_USER'
     }),
 
+    /**
+     * @name getUser
+     * @param {string} id
+     * @description Verifica se a página já buscou os usuários na API, se sim, passa novamente esses usuarios para o atributo
+     * user, caso não, busca na API
+     * @returns {Promise}
+     */
     getUser (id) {
       const hasUser = Object.keys(this.GET_USER()).length !== 0
 
@@ -110,7 +117,9 @@ export default {
     },
     /**
      * @name selectInfo
-     * @description Executado na hora que o usuário passa o mouse em cima do icone
+     * @param {string} info
+     * @description Executado na hora que o usuário passa o mouse em cima do icone e chama a função isEqualInfo
+     * @returns {void}
      */
     selectInfo (info) {
       const INFOS_ELEMENTS = [
@@ -132,10 +141,24 @@ export default {
       }
     },
 
+    /**
+     * @name isActive
+     * @param {string} info
+     * @description Se a info passada for igual ao icone ativo, ele insere a classe active no icone, deixando com
+     * a cor secundária
+     * @returns {any}
+     */
     isActive (info) {
       return info === this.activeIcon ? {active: true} : ''
     },
 
+    /**
+     * @name isCapitilize
+     * @param {string[]} infos
+     * @description Verifica se o dado ativo atual está presente no array passado, caso esteja ele aplica a classe
+     * capitalize (a primeira letra da string fica em maiuscula), caso nao seja passa apenas a text-weight-medium
+     * @returns {object}
+     */
     isCapitilize (infos) {
       const CAPITALIZE = infos.some(info => info === this.activeIcon)
 
@@ -144,6 +167,12 @@ export default {
         : {'text-weight-medium': true}
     },
 
+    /**
+     * @name isActiveInfo
+     * @param {string} info
+     * @description Verifica se a info passada é igual a ativa
+     * @returns {boolean}
+     */
     isActiveInfo (info) {
       return info === this.activeIcon
     },
