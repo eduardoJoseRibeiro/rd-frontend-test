@@ -150,6 +150,9 @@ export default {
         case 'atendidos':
           params.users = this.GET_DONE_USERS()
           break
+        case 'home':
+          params.users = this.GET_USERS()
+          break
       }
       this.setFilterUsers(params)
       this.setTermSearch(this.search_term)
@@ -163,6 +166,8 @@ export default {
           return this.GET_REMOVED_USERS()
         case 'atendidos':
           return this.GET_DONE_USERS()
+        case 'home':
+          return this.GET_USERS()
       }
     },
 
@@ -171,7 +176,7 @@ export default {
       setTimeout(() => {
         this.setUsers(50)
         done()
-      }, 200)
+      }, 500)
     },
 
     autocomplete (term, done) {
