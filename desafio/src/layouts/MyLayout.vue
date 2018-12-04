@@ -72,7 +72,10 @@
 </template>
 
 <script>
-import { openURL, QSearch, QSpinner, QSpinnerDots, QAutocomplete } from 'quasar'
+import {
+  openURL, QSearch, QSpinner,
+  QSpinnerDots, QAutocomplete
+} from 'quasar'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
